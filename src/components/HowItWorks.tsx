@@ -39,11 +39,15 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="relative">
-          {/* Línea conectora */}
-          <div className="absolute left-1/2 top-8 bottom-8 w-0.5 bg-primary/20 hidden md:block" />
-
-          <div className="grid md:grid-cols-3 gap-8 relative">
+        <div className="relative -z-0">
+          {/* Línea conectora horizontal (detrás de las tarjetas) */}
+          <div className="absolute top-8 left-16 right-16 h-16 flex items-center justify-center -z-10 md:block hidden">
+            <svg width="100%" height="2">
+              <line x1="0" y1="1" x2="100%" y2="1" strokeDasharray="8 8" className="stroke-primary/30" strokeWidth="2" />
+            </svg>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
@@ -51,17 +55,17 @@ export default function HowItWorks() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="relative"
+                className="relative p-8 rounded-2xl bg-card border border-card-border transition-all duration-300 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10"
               >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 relative">
+                <div className="flex flex-col items-center text-center relative">
+                  <div className="w-16 h-16 rounded-full bg-background border-2 border-primary/20 flex items-center justify-center mb-6 relative z-10">
                     <step.icon className="w-8 h-8 text-primary" />
-                    <span className="absolute -top-2 -right-2 text-xs font-bold bg-background border border-card-border rounded-full w-6 h-6 flex items-center justify-center">
-                      {index + 1}
-                    </span>
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
                   <p className="text-muted leading-relaxed max-w-xs">{step.description}</p>
+                  <span className="absolute -top-3 text-6xl font-bold text-card-border/20 -z-0">
+                    {step.number}
+                  </span>
                 </div>
               </motion.div>
             ))}

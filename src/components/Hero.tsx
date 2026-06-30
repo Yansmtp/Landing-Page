@@ -2,44 +2,25 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
-import AnimatedSection from './AnimatedSection'
 
 export default function Hero() {
-  const isBrowser = typeof window !== 'undefined'
-  const particleCount = 20
-
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 overflow-hidden">
-      {/* Fondo con gradiente animado */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-primary/5 -z-10" />
-      
-      {/* Partículas animadas (efecto visual) */}
-      <div className="absolute inset-0 -z-10 opacity-30">
-        {[...Array(particleCount)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-primary rounded-full"
-            initial={{
-              x: isBrowser ? Math.random() * window.innerWidth : 100 + i * 20,
-              y: isBrowser ? Math.random() * window.innerHeight : 100 + i * 15,
-              opacity: Math.random() * 0.5 + 0.1,
-            }}
-            animate={{
-              y: [null, -30, 30, -30],
-              x: [null, 20, -20, 20],
-              opacity: [null, 0.8, 0.2, 0.8],
-            }}
-            transition={{
-              duration: Math.random() * 5 + 3,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            style={{
-              width: Math.random() * 4 + 1 + 'px',
-              height: Math.random() * 4 + 1 + 'px',
-            }}
-          />
-        ))}
+      {/* Fondo moderno con patrón de puntos y resplandor */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-background" />
+        <div 
+          className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-primary/10 via-background to-background" 
+          style={{ backgroundSize: '100% 100%' }} 
+        />
+        <div 
+          className="absolute inset-0 bg-[radial-gradient(white,transparent_1px)]"
+          style={{
+            backgroundSize: '32px 32px',
+            maskImage: 'radial-gradient(ellipse_at_center,black,transparent_70%)',
+            opacity: 0.1
+          }}
+        />
       </div>
 
       <div className="max-w-7xl mx-auto w-full">
@@ -88,10 +69,10 @@ export default function Hero() {
           >
             <a
               href="#waitlist"
-              className="group inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/30"
+              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 shadow-[0_0_0_0_rgba(139,92,246,0.5)] hover:shadow-[0_0_30px_0_rgba(139,92,246,0.5)]"
             >
-              <span>Únete al Acceso Anticipado</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <span className="relative z-10">Únete al Acceso Anticipado</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
             </a>
           </motion.div>
 
