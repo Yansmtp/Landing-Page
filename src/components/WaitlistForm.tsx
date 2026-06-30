@@ -54,20 +54,31 @@ export default function WaitlistForm() {
     }
 
     setIsSubmitting(true)
-    // Simulación de envío
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    setIsSubmitting(false)
-    setIsSuccess(true)
-    
-    // Resetear formulario después de éxito
-    setFormData({
-      name: '',
-      email: '',
-      profession: '',
-      country: '',
-      status: '',
-      difficulty: '',
-    })
+    setErrors({})
+
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Ocurrió un error al registrar.')
+      }
+
+      setIsSuccess(true)
+      // Resetear formulario después de éxito
+      setFormData({ name: '', email: '', profession: '', country: '', status: '', difficulty: '' })
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Error desconocido'
+      setErrors({ form: errorMessage })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -98,7 +109,10 @@ export default function WaitlistForm() {
             </p>
           </motion.div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} noValidate className="space-y-6">
+            {errors.form && (
+              <p className="text-sm text-red-500 text-center bg-red-500/10 p-3 rounded-lg">{errors.form}</p>
+            )}
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium mb-2">Nombre</label>
