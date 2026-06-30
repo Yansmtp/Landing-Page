@@ -94,7 +94,7 @@ export default function WaitlistForm() {
               Revisa tu correo para confirmar tu acceso anticipado.
             </p>
             <p className="text-sm text-muted/60 mt-4">
-              Mientras tanto, ¿te gustaría recibir nuestro <span className="text-primary">"Checklist anti-ATS"</span> gratis?
+              Mientras tanto, ¿te gustaría recibir nuestro <span className="text-primary">&quot;Checklist anti-ATS&quot;</span> gratis?
             </p>
           </motion.div>
         ) : (

@@ -27,8 +27,8 @@ export default function Testimonial() {
           
           <div className="pl-4 md:pl-12">
             <blockquote className="text-xl md:text-2xl font-light leading-relaxed mb-6">
-              "Pasé de enviar 50 CVs a la semana a recibir 3 llamadas de reclutadores en 5 días. 
-              La IA no encontró trabajo por mí, me enseñó a vender mi perfil como un producto premium."
+              &quot;Pasé de enviar 50 CVs a la semana a recibir 3 llamadas de reclutadores en 5 días. 
+              La IA no encontró trabajo por mí, me enseñó a vender mi perfil como un producto premium.&quot;
             </blockquote>
             
             <div className="flex items-center gap-4">

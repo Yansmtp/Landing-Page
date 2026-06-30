@@ -13,7 +13,7 @@ export default function Mockup() {
             Así se ve una estrategia clara.
           </h2>
           <p className="text-muted text-lg">
-            Un dashboard donde ves tu "Empleabilidad Score" y los pasos concretos para mejorarlo.
+            Un dashboard donde ves tu &quot;Empleabilidad Score&quot; y los pasos concretos para mejorarlo.
           </p>
         </div>
 
