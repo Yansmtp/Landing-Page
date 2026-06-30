@@ -4,12 +4,7 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "env": {
-    "NEXT_PUBLIC_APP_URL": "@next_public_app_url"
-  },
-  "functions": {
-    "api/**/*.ts": {
-      "maxDuration": 60
-    }
+    "NEXT_PUBLIC_APP_URL": "https://landing-page.vercel.app"
   },
   "regions": ["iad1"],
   "github": {
