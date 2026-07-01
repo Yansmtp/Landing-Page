@@ -73,7 +73,7 @@ export default function HowItWorks() {
     setOpenIndex(openIndex === index ? null : index)
   }
 
-  // Reset accordion when section is out of viewport
+  // Reset accordion when section is completely out of viewport
   useEffect(() => {
     const section = sectionRef.current
     if (!section) return
@@ -81,7 +81,7 @@ export default function HowItWorks() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Reset when section is not visible
+          // Only reset when section is completely out of view (not intersecting at all)
           if (!entry.isIntersecting && openIndex !== null) {
             setOpenIndex(null)
           }
@@ -89,7 +89,7 @@ export default function HowItWorks() {
       },
       {
         threshold: 0,
-        rootMargin: '-50px 0px -50px 0px',
+        rootMargin: '-100% 0px -100% 0px', // Only trigger when completely out of viewport
       }
     )
 
@@ -100,27 +100,49 @@ export default function HowItWorks() {
     }
   }, [openIndex])
 
-  // Auto collapse on scroll
+  // Auto collapse on scroll - only when section is completely out of view
   useEffect(() => {
     if (openIndex === null) return
 
     let scrollTimeout: NodeJS.Timeout
-    let hasScrolled = false
+    let lastScrollY = window.scrollY
+    let ticking = false
 
     const handleScroll = () => {
-      // Only trigger on first scroll event
-      if (!hasScrolled) {
-        hasScrolled = true
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY
+          const scrollDirection = currentScrollY > lastScrollY ? 'down' : 'up'
+          const scrollDistance = Math.abs(currentScrollY - lastScrollY)
+          
+          lastScrollY = currentScrollY
+          
+          // Only trigger if scrolled more than 100px and section is not visible
+          if (scrollDistance > 100) {
+            const section = sectionRef.current
+            if (!section) return
+
+            const rect = section.getBoundingClientRect()
+            const windowHeight = window.innerHeight
+            
+            // Check if section is completely out of viewport
+            const isCompletelyOut = rect.bottom < 0 || rect.top > windowHeight
+            
+            if (isCompletelyOut && openIndex !== null) {
+              scrollTimeout = setTimeout(() => {
+                setOpenIndex(null)
+              }, 150)
+            }
+          }
+          
+          ticking = false
+        })
         
-        // Add a small delay to ensure smooth animation
-        scrollTimeout = setTimeout(() => {
-          setOpenIndex(null)
-          hasScrolled = false
-        }, 100)
+        ticking = true
       }
     }
 
-    // Add scroll listener
+    // Add scroll listener with passive option for performance
     window.addEventListener('scroll', handleScroll, { passive: true })
 
     // Cleanup
