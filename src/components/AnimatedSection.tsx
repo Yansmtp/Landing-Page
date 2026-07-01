@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import type { ReactNode, ForwardedRef } from 'react'
+import { forwardRef } from 'react'
 
 interface AnimatedSectionProps {
   children: ReactNode
@@ -10,7 +11,7 @@ interface AnimatedSectionProps {
   id?: string
 }
 
-const AnimatedSection = ({ children, className = '', delay = 0, id }: AnimatedSectionProps, ref: ForwardedRef<HTMLElement>) => {
+const AnimatedSection = forwardRef<HTMLElement, AnimatedSectionProps>(({ children, className = '', delay = 0, id }, ref) => {
   return (
     <motion.section
       ref={ref}
@@ -24,6 +25,8 @@ const AnimatedSection = ({ children, className = '', delay = 0, id }: AnimatedSe
       {children}
     </motion.section>
   )
-}
+})
+
+AnimatedSection.displayName = 'AnimatedSection'
 
 export default AnimatedSection
