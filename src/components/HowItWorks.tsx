@@ -27,50 +27,94 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <AnimatedSection className="py-20 px-4 sm:px-6 lg:px-8 bg-card/50">
+    <AnimatedSection className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-card/30 to-background" />
+      
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-primary text-sm font-medium mb-6"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            Proceso simple
+          </motion.div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
             Estrategia en 3 pasos.
-            <span className="block text-gradient mt-2">La IA hace el resto.</span>
+            <span className="block text-gradient mt-3">La IA hace el resto.</span>
           </h2>
-          <p className="text-muted text-lg max-w-2xl mx-auto">
+          <p className="text-muted text-lg md:text-xl max-w-2xl mx-auto">
             Sin complicaciones. Sin burocracia. Solo resultados.
           </p>
         </div>
 
-        <div className="relative -z-0">
-          {/* Línea conectora horizontal (detrás de las tarjetas) */}
-          <div className="absolute top-8 left-16 right-16 h-16 flex items-center justify-center -z-10 md:block hidden">
-            <svg width="100%" height="2">
-              <line x1="0" y1="1" x2="100%" y2="1" strokeDasharray="8 8" className="stroke-primary/30" strokeWidth="2" />
-            </svg>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="relative p-8 rounded-2xl bg-card border border-card-border transition-all duration-300 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10"
-              >
-                <div className="flex flex-col items-center text-center relative">
-                  <div className="w-16 h-16 rounded-full bg-background border-2 border-primary/20 flex items-center justify-center mb-6 relative z-10">
-                    <step.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                  <p className="text-muted leading-relaxed max-w-xs">{step.description}</p>
-                  <span className="absolute -top-3 text-6xl font-bold text-card-border/20 -z-0">
-                    {step.number}
-                  </span>
+        {/* Bento Grid Layout */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.15, duration: 0.5 }}
+              viewport={{ once: true }}
+              className="group relative bento-card hover-lift"
+            >
+              {/* Gradient glow on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/5 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
+              
+              {/* Step number with gradient */}
+              <div className="absolute top-6 right-6 text-6xl font-bold bg-gradient-to-br from-primary/20 to-purple-500/20 bg-clip-text text-transparent">
+                {step.number}
+              </div>
+              
+              <div className="relative z-10">
+                {/* Icon with animated background */}
+                <div className="relative w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="absolute inset-0 bg-primary/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+                  <step.icon className="w-10 h-10 text-primary relative z-10" />
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-gradient transition-all duration-300">
+                  {step.title}
+                </h3>
+                <p className="text-muted leading-relaxed text-lg">
+                  {step.description}
+                </p>
+
+                {/* Arrow indicator */}
+                <div className="mt-6 flex items-center text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-sm font-medium mr-2">Más información</span>
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-card">
+            <div className="flex -space-x-2">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-purple-500 border-2 border-background" />
+              ))}
+            </div>
+            <span className="text-sm font-medium">+500 profesionales ya están en lista</span>
+          </div>
+        </motion.div>
       </div>
     </AnimatedSection>
   )
