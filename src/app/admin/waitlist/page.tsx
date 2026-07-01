@@ -78,13 +78,14 @@ export default function AdminWaitlistPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8"
         >
           <div className="glass-card p-6 rounded-2xl">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-muted text-sm mb-1">Total Registros</p>
                 <p className="text-3xl font-bold text-foreground">{entries.length}</p>
+                <p className="text-xs text-muted mt-1">100%</p>
               </div>
               <Users className="w-10 h-10 text-primary/30" />
             </div>
@@ -97,6 +98,9 @@ export default function AdminWaitlistPage() {
                 <p className="text-3xl font-bold text-foreground">
                   {entries.filter(e => e.status === 'Empleado').length}
                 </p>
+                <p className="text-xs text-muted mt-1">
+                  {entries.length > 0 ? ((entries.filter(e => e.status === 'Empleado').length / entries.length) * 100).toFixed(1) : 0}%
+                </p>
               </div>
               <Briefcase className="w-10 h-10 text-primary/30" />
             </div>
@@ -108,6 +112,39 @@ export default function AdminWaitlistPage() {
                 <p className="text-muted text-sm mb-1">Desempleados</p>
                 <p className="text-3xl font-bold text-foreground">
                   {entries.filter(e => e.status === 'Desempleado').length}
+                </p>
+                <p className="text-xs text-muted mt-1">
+                  {entries.length > 0 ? ((entries.filter(e => e.status === 'Desempleado').length / entries.length) * 100).toFixed(1) : 0}%
+                </p>
+              </div>
+              <Briefcase className="w-10 h-10 text-primary/30" />
+            </div>
+          </div>
+          
+          <div className="glass-card p-6 rounded-2xl">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-muted text-sm mb-1">Freelancers</p>
+                <p className="text-3xl font-bold text-foreground">
+                  {entries.filter(e => e.status === 'Freelancer').length}
+                </p>
+                <p className="text-xs text-muted mt-1">
+                  {entries.length > 0 ? ((entries.filter(e => e.status === 'Freelancer').length / entries.length) * 100).toFixed(1) : 0}%
+                </p>
+              </div>
+              <Briefcase className="w-10 h-10 text-primary/30" />
+            </div>
+          </div>
+          
+          <div className="glass-card p-6 rounded-2xl">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-muted text-sm mb-1">Estudiantes</p>
+                <p className="text-3xl font-bold text-foreground">
+                  {entries.filter(e => e.status === 'Estudiante').length}
+                </p>
+                <p className="text-xs text-muted mt-1">
+                  {entries.length > 0 ? ((entries.filter(e => e.status === 'Estudiante').length / entries.length) * 100).toFixed(1) : 0}%
                 </p>
               </div>
               <Briefcase className="w-10 h-10 text-primary/30" />
