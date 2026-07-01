@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Send, CheckCircle, Sparkles } from 'lucide-react'
+import { Send, CheckCircle, Sparkles, Briefcase, UserX, Laptop, GraduationCap } from 'lucide-react'
 import AnimatedSection from './AnimatedSection'
 
 export default function WaitlistForm() {
@@ -285,20 +285,26 @@ export default function WaitlistForm() {
                   Situación actual <span className="text-red-500">*</span>
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
-                  {['Empleado', 'Desempleado', 'Freelancer', 'Estudiante'].map((option) => (
+                  {[
+                    { label: 'Empleado', icon: Briefcase },
+                    { label: 'Desempleado', icon: UserX },
+                    { label: 'Freelancer', icon: Laptop },
+                    { label: 'Estudiante', icon: GraduationCap },
+                  ].map(({ label, icon: Icon }) => (
                     <motion.button
-                      key={option}
+                      key={label}
                       type="button"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={() => setFormData({ ...formData, status: option })}
-                      className={`px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border-2 transition-all font-medium text-xs sm:text-sm ${
-                        formData.status === option
+                      onClick={() => setFormData({ ...formData, status: label })}
+                      className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-3 sm:py-4 rounded-xl border-2 transition-all font-medium text-xs sm:text-sm ${
+                        formData.status === label
                           ? 'bg-primary/10 border-primary text-primary shadow-lg shadow-primary/20'
                           : 'bg-background/50 border-card-border hover:border-muted'
                       }`}
                     >
-                      {option}
+                      <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
+                      <span>{label}</span>
                     </motion.button>
                   ))}
                 </div>
