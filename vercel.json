@@ -4,7 +4,8 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "env": {
-    "NEXT_PUBLIC_APP_URL": "https://landing-page.vercel.app"
+    "NEXT_PUBLIC_APP_URL": "https://landing-page.vercel.app",
+    "REDIS_URL": "redis://default:DC0mJZ9FNNkmbqtxFq2cbhiLzLxusV7o@turbosolid-retropolished-diverse-91982.db.redis.io:10945"
   },
   "regions": ["iad1"],
   "github": {
