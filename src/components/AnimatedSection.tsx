@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import type { ReactNode } from 'react'
+import type { ReactNode, ForwardedRef } from 'react'
 
 interface AnimatedSectionProps {
   children: ReactNode
@@ -10,9 +10,10 @@ interface AnimatedSectionProps {
   id?: string
 }
 
-export default function AnimatedSection({ children, className = '', delay = 0, id }: AnimatedSectionProps) {
+const AnimatedSection = ({ children, className = '', delay = 0, id }: AnimatedSectionProps, ref: ForwardedRef<HTMLElement>) => {
   return (
     <motion.section
+      ref={ref}
       id={id}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -24,3 +25,5 @@ export default function AnimatedSection({ children, className = '', delay = 0, i
     </motion.section>
   )
 }
+
+export default AnimatedSection
