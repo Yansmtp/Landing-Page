@@ -53,8 +53,8 @@ export default function Problem() {
           </p>
         </div>
 
-        {/* Bento Grid with asymmetric layout */}
-        <div className="grid md:grid-cols-3 gap-6">
+        {/* Bento Grid with asymmetric layout - mobile optimized */}
+        <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
           {problems.map((problem, index) => (
             <motion.div
               key={index}
@@ -62,27 +62,27 @@ export default function Problem() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.15, duration: 0.5 }}
               viewport={{ once: true }}
-              className="group relative bento-card hover-lift"
+              className="group relative bento-card hover-lift p-6 sm:p-8"
             >
               {/* Gradient overlay on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-orange-500/5 to-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
               
               <div className="relative z-10">
-                {/* Icon with enhanced styling */}
-                <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                  <div className="absolute inset-0 bg-red-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-                  <problem.icon className="w-8 h-8 text-red-500 relative z-10" />
+                {/* Icon with enhanced styling - mobile optimized */}
+                <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                  <div className="absolute inset-0 bg-red-500/10 rounded-xl sm:rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+                  <problem.icon className="w-6 h-6 sm:w-8 sm:h-8 text-red-500 relative z-10" />
                 </div>
                 
-                <h3 className="text-xl md:text-2xl font-bold mb-4 group-hover:text-gradient transition-all duration-300">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-4 group-hover:text-gradient transition-all duration-300">
                   {problem.title}
                 </h3>
-                <p className="text-muted leading-relaxed text-lg">
+                <p className="text-muted leading-relaxed text-base sm:text-lg">
                   {problem.description}
                 </p>
 
-                {/* Visual indicator */}
-                <div className="mt-6 flex items-center text-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {/* Visual indicator - hidden on mobile */}
+                <div className="mt-4 sm:mt-6 hidden sm:flex items-center text-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
@@ -93,12 +93,12 @@ export default function Problem() {
           ))}
         </div>
 
-        {/* Stats section */}
+        {/* Stats section - mobile optimized */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
+          className="mt-12 sm:mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8"
         >
           {[
             { value: '98%', label: 'CVs ignorados' },
@@ -107,10 +107,10 @@ export default function Problem() {
             { value: '6 meses', label: 'Búsqueda promedio' },
           ].map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-gradient mb-2">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-1 sm:mb-2">
                 {stat.value}
               </div>
-              <div className="text-sm text-muted">
+              <div className="text-xs sm:text-sm text-muted">
                 {stat.label}
               </div>
             </div>

@@ -9,9 +9,9 @@ export default function Hero() {
       {/* Gradient mesh background */}
       <div className="absolute inset-0 -z-10 gradient-mesh" />
       
-      {/* Animated gradient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+      {/* Animated gradient orbs - optimized for mobile */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-primary/20 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-purple-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
       
       {/* Grid pattern overlay */}
       <div 
@@ -35,16 +35,16 @@ export default function Hero() {
             <span>Acceso anticipado • Limitado</span>
           </motion.div>
 
-          {/* Headline with enhanced typography */}
+          {/* Headline with enhanced typography - mobile optimized */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight max-w-6xl"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight max-w-6xl"
           >
             <span className="block">El mercado laboral ya no</span>
-            <span className="block text-gradient mt-3">se conquista con CVs.</span>
-            <span className="block mt-3 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-muted font-semibold">
+            <span className="block text-gradient mt-2 sm:mt-3">se conquista con CVs.</span>
+            <span className="block mt-2 sm:mt-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-muted font-semibold">
               Se conquista con estrategia.
             </span>
           </motion.h1>
@@ -61,19 +61,19 @@ export default function Hero() {
             exactamente qué cambiar y dónde postularte.
           </motion.p>
 
-          {/* CTA with enhanced button */}
+          {/* CTA with enhanced button - mobile optimized */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4 items-center"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center w-full sm:w-auto"
           >
             <a
               href="#waitlist"
-              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 shadow-[0_0_0_0_rgba(139,92,246,0.5)] hover:shadow-[0_0_40px_0_rgba(139,92,246,0.6)] magnetic-hover"
+              className="group relative inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-primary text-white font-semibold rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 shadow-[0_0_0_0_rgba(139,92,246,0.5)] hover:shadow-[0_0_40px_0_rgba(139,92,246,0.6)] magnetic-hover w-full sm:w-auto"
             >
-              <span className="relative z-10 text-lg">Únete al Acceso Anticipado</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
+              <span className="relative z-10 text-base sm:text-lg">Únete al Acceso Anticipado</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform relative z-10" />
               <div className="absolute inset-0 bg-gradient-to-r from-primary via-purple-600 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
           </motion.div>

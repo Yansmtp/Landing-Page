@@ -114,7 +114,7 @@ export default function WaitlistForm() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="relative p-8 md:p-12 rounded-3xl glass-card text-center"
+            className="relative p-6 sm:p-8 md:p-12 rounded-3xl glass-card text-center"
           >
             {/* Success animation background */}
             <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-3xl" />
@@ -124,19 +124,19 @@ export default function WaitlistForm() {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", duration: 0.5 }}
-                className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6"
+                className="w-16 h-16 sm:w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6"
               >
-                <CheckCircle className="w-12 h-12 text-green-500" />
+                <CheckCircle className="w-10 h-10 sm:w-12 sm:h-12 text-green-500" />
               </motion.div>
-              <h3 className="text-3xl md:text-4xl font-bold mb-4">¡Estás dentro!</h3>
-              <p className="text-muted text-lg mb-6">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">¡Estás dentro!</h3>
+              <p className="text-muted text-base sm:text-lg mb-4 sm:mb-6">
                 Revisa tu correo para confirmar tu acceso anticipado.
               </p>
               
-              {/* Bonus offer */}
-              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-gradient-to-r from-primary/10 to-purple-500/10 border border-primary/20">
-                <Sparkles className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium">
+              {/* Bonus offer - mobile optimized */}
+              <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-primary/10 to-purple-500/10 border border-primary/20">
+                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                <span className="text-xs sm:text-sm font-medium">
                   Bonus: <span className="text-gradient font-semibold">"Checklist anti-ATS"</span> gratis
                 </span>
               </div>
@@ -149,7 +149,7 @@ export default function WaitlistForm() {
             viewport={{ once: true }}
             onSubmit={handleSubmit}
             noValidate
-            className="relative p-8 md:p-10 rounded-3xl glass-card"
+            className="relative p-6 sm:p-8 md:p-10 rounded-3xl glass-card"
           >
             {errors.form && (
               <motion.p
@@ -161,10 +161,10 @@ export default function WaitlistForm() {
               </motion.p>
             )}
 
-            <div className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-5">
+            <div className="space-y-4 sm:space-y-5">
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                 <div>
-                  <label className="block text-sm font-semibold mb-2 text-foreground">
+                  <label className="block text-sm font-semibold mb-1.5 sm:mb-2 text-foreground">
                     Nombre <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -172,9 +172,9 @@ export default function WaitlistForm() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Tu nombre"
-                    className={`w-full px-4 py-3.5 rounded-xl bg-background/50 border ${
+                    className={`w-full px-3.5 sm:px-4 py-3 sm:py-3.5 rounded-xl bg-background/50 border ${
                       errors.name ? 'border-red-500' : 'border-card-border'
-                    } focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all`}
+                    } focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-sm sm:text-base`}
                   />
                   {errors.name && (
                     <motion.p
@@ -191,7 +191,7 @@ export default function WaitlistForm() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold mb-2 text-foreground">
+                  <label className="block text-sm font-semibold mb-1.5 sm:mb-2 text-foreground">
                     Correo electrónico <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -199,9 +199,9 @@ export default function WaitlistForm() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="tú@ejemplo.com"
-                    className={`w-full px-4 py-3.5 rounded-xl bg-background/50 border ${
+                    className={`w-full px-3.5 sm:px-4 py-3 sm:py-3.5 rounded-xl bg-background/50 border ${
                       errors.email ? 'border-red-500' : 'border-card-border'
-                    } focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all`}
+                    } focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-sm sm:text-base`}
                   />
                   {errors.email && (
                     <motion.p
@@ -219,7 +219,7 @@ export default function WaitlistForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-2 text-foreground">
+                <label className="block text-sm font-semibold mb-1.5 sm:mb-2 text-foreground">
                   Profesión <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -227,9 +227,9 @@ export default function WaitlistForm() {
                   value={formData.profession}
                   onChange={(e) => setFormData({ ...formData, profession: e.target.value })}
                   placeholder="Ej. Ingeniero de Datos"
-                  className={`w-full px-4 py-3.5 rounded-xl bg-background/50 border ${
+                  className={`w-full px-3.5 sm:px-4 py-3 sm:py-3.5 rounded-xl bg-background/50 border ${
                     errors.profession ? 'border-red-500' : 'border-card-border'
-                  } focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all`}
+                  } focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-sm sm:text-base`}
                 />
                 {errors.profession && (
                   <motion.p
@@ -246,23 +246,23 @@ export default function WaitlistForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-2 text-foreground">
+                <label className="block text-sm font-semibold mb-1.5 sm:mb-2 text-foreground">
                   País <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
                   <select
                     value={formData.country}
                     onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                    className={`w-full px-4 py-3.5 rounded-xl bg-background/50 border ${
+                    className={`w-full px-3.5 sm:px-4 py-3 sm:py-3.5 rounded-xl bg-background/50 border ${
                       errors.country ? 'border-red-500' : 'border-card-border'
-                    } focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all appearance-none`}
+                    } focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all appearance-none text-sm sm:text-base`}
                   >
                     <option value="">¿Dónde resides actualmente?</option>
                     {countries.map((country) => (
                       <option key={country} value={country}>{country}</option>
                     ))}
                   </select>
-                  <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </div>
@@ -281,10 +281,10 @@ export default function WaitlistForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-3 text-foreground">
+                <label className="block text-sm font-semibold mb-2 sm:mb-3 text-foreground">
                   Situación actual <span className="text-red-500">*</span>
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                   {['Empleado', 'Desempleado', 'Freelancer', 'Estudiante'].map((option) => (
                     <motion.button
                       key={option}
@@ -292,7 +292,7 @@ export default function WaitlistForm() {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setFormData({ ...formData, status: option })}
-                      className={`px-4 py-3 rounded-xl border-2 transition-all font-medium ${
+                      className={`px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border-2 transition-all font-medium text-xs sm:text-sm ${
                         formData.status === option
                           ? 'bg-primary/10 border-primary text-primary shadow-lg shadow-primary/20'
                           : 'bg-background/50 border-card-border hover:border-muted'
@@ -317,15 +317,15 @@ export default function WaitlistForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-2 text-foreground">
+                <label className="block text-sm font-semibold mb-1.5 sm:mb-2 text-foreground">
                   ¿Cuál es tu mayor dificultad? <span className="text-muted font-normal">(opcional)</span>
                 </label>
                 <textarea
                   value={formData.difficulty}
                   onChange={(e) => setFormData({ ...formData, difficulty: e.target.value })}
                   placeholder="Cuéntanos brevemente..."
-                  rows={4}
-                  className="w-full px-4 py-3.5 rounded-xl bg-background/50 border border-card-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
+                  rows={3}
+                  className="w-full px-3.5 sm:px-4 py-3 sm:py-3.5 rounded-xl bg-background/50 border border-card-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none text-sm sm:text-base"
                 />
               </div>
 
@@ -334,14 +334,14 @@ export default function WaitlistForm() {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-2xl hover:shadow-primary/50 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed magnetic-hover"
+                className="w-full py-3.5 sm:py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-2xl hover:shadow-primary/50 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed magnetic-hover text-sm sm:text-base"
               >
                 {isSubmitting ? (
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                 ) : (
                   <>
-                    <span className="text-lg">Solicitar Acceso Anticipado</span>
-                    <Send className="w-5 h-5" />
+                    <span className="text-base sm:text-lg">Solicitar Acceso Anticipado</span>
+                    <Send className="w-4 h-4 sm:w-5 sm:h-5" />
                   </>
                 )}
               </motion.button>
